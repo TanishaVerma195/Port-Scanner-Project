@@ -1,0 +1,39 @@
+import socket 
+import sys 
+import threading
+from datetime import datetime
+
+#target = input("Enter the target Scan:")
+target = "localhost"
+host = socket.gethostbyname(target)
+
+date = datetime.now()
+t1 = datetime.now()
+#print("start_time: {}".format(t1.strftime("%H:%M:%S")))
+
+#socketme("%H:%M:%S"))).AF_INET IS USED TO DEFINE IPv4 and socket.SOCK_STREAM IS USED TO DEFINE TCP
+
+def scan_port(host):
+ for port in range(1, 1500):
+      sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      sock.settimeout(0.001)
+      result = sock.connect_ex((host, port))
+      if result == 0:
+           try:
+            print(f"Port No : {port} is open , Protocol Service Name: {socket.getservbyport(port, 'tcp')}")
+           except socket.error:
+            print(f"Port No : {port}is open , Protocol Service Name: Unknown")
+           sock.close()
+
+t2 = datetime.now()
+#print("end_time: {}".format(t2.strftime("%H:%M:%S")))
+
+total = t2 - t1
+#print("total_time: {}".format(t2 - t1.strftime("%H:%M:%S"))
+t = threading.Thread(target=scan_port, args=(host,))
+t.start()
+t.join()
+print(f"Sanning Completed in: {total}")
+
+
+
