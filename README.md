@@ -1,5 +1,6 @@
 💡PortScanner
 ​A fast and efficient port scanner written in Python. This tool is designed to quickly identify open ports on a target host, providing essential information for network analysis and security auditing.
+
 ​✨ Features
 ​Fast Scanning: Utilizes multithreading for concurrent scanning of multiple ports, significantly speeding up the process.
 ​Target Flexibility: Supports scanning a single IP address or a hostname.
